@@ -1,0 +1,25 @@
+name: Block pushes
+run-name: ${{ github.actor }} is trying to push... 🚀
+on:
+  push:
+    branches:
+    - main
+    - master
+    - github-actions
+jobs:
+  Block-Push-Actions:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+    - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+    - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+    - run: echo "Pushes to this branch are not allowed."
+    - run: exit 1 # This exits with a non-zero code, which fails the job and blocks the push
+    #- name: Cancel workflow if condition is met
+     # uses: actions/workflow-dispatch@v1
+      #with:
+       # workflow_id: ${{ github.workflow_id }}
+        #ref: ${{ github.ref }}
+        #inputs: |
+         # cancel: true
+          #cancel-message: "Pushes to this branch are not allowed."  
